@@ -13,12 +13,25 @@ interface IsSensorAvailableResult {
     error?: string
 }
 
+interface CreateKeysOptions {
+    keyTag: string
+    keyPassword: string
+}
+
 interface CreateKeysResult {
     publicKey: string
 }
 
+interface BiometricKeysExistOptions {
+    keyTag: string
+}
+
 interface BiometricKeysExistResult {
     keysExist: boolean
+}
+
+interface DeleteKeysOptions {
+    keyTag: string
 }
 
 interface DeleteKeysResult {
@@ -26,9 +39,11 @@ interface DeleteKeysResult {
 }
 
 interface CreateSignatureOptions {
+    keyTag: string
     promptMessage: string
     payload: string
     cancelButtonText?: string
+    keyPassword?: string
 }
 
 interface CreateSignatureResult {
@@ -71,28 +86,35 @@ module ReactNativeBiometrics {
     /**
      * Creates a public private key pair,returns promise that resolves to
      * an object with object.publicKey, which is the public key of the newly generated key pair
+     * @param {Object} createKeysOptions
+     * @param {string} createKeysOptions.keyTag
+     * @param {string} createKeysOptions.keyPassword
      * @returns {Promise<Object>}  Promise that resolves to object with details about the newly generated public key
      */
-    export function createKeys(): Promise<CreateKeysResult> {
-        return bridge.createKeys();
+    export function createKeys(createKeysOptions: CreateKeysOptions): Promise<CreateKeysResult> {
+        return bridge.createKeys(createKeysOptions);
     }
 
     /**
      * Returns promise that resolves to an object with object.keysExists = true | false
      * indicating if the keys were found to exist or not
+     * @param {Object} biometricKeysExistsOptions
+     * @param {string} biometricKeysExistsOptions.keyTag
      * @returns {Promise<Object>} Promise that resolves to object with details aobut the existence of keys
      */
-    export function biometricKeysExist(): Promise<BiometricKeysExistResult> {
-        return bridge.biometricKeysExist();
+    export function biometricKeysExist(biometricKeysExistsOptions: BiometricKeysExistOptions): Promise<BiometricKeysExistResult> {
+        return bridge.biometricKeysExist(biometricKeysExistsOptions);
     }
 
     /**
      * Returns promise that resolves to an object with true | false
      * indicating if the keys were properly deleted
+     * @param {Object} deleteKeysOptions
+     * @param {string} deleteKeysOptions.keyTag
      * @returns {Promise<Object>} Promise that resolves to an object with details about the deletion
      */
-    export function deleteKeys(): Promise<DeleteKeysResult> {
-        return bridge.deleteKeys();
+    export function deleteKeys(deleteKeysOptions: DeleteKeysOptions): Promise<DeleteKeysResult> {
+        return bridge.deleteKeys(deleteKeysOptions);
     }
 
     /**
@@ -100,6 +122,8 @@ module ReactNativeBiometrics {
      * returns promise that resolves to an object with object.signature,
      * which is cryptographic signature of the payload
      * @param {Object} createSignatureOptions
+     * @param {string} createSignatureOptions.keyTag
+     * @param {string} createSignatureOptions.keyPassword
      * @param {string} createSignatureOptions.promptMessage
      * @param {string} createSignatureOptions.payload
      * @param {string} createSignatureOptions.cancelButtonText (Android only)

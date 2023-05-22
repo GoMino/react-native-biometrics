@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 description = 'react-native-biometrics'
 
@@ -8,6 +9,7 @@ def DEFAULT_MIN_SDK_VERSION                 = 16
 def DEFAULT_TARGET_SDK_VERSION              = 29
 
 buildscript {
+
     repositories {
         google()
         jcenter()
@@ -37,6 +39,10 @@ repositories {
 }
 
 dependencies {
-    implementation 'androidx.biometric:biometric:1.0.1'
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation 'androidx.biometric:biometric:1.1.0@aar'
+
     implementation 'com.facebook.react:react-native:+'
 }
