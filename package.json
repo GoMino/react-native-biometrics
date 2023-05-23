@@ -1,5 +1,5 @@
 {
-  "name": "react-native-biometrics",
+  "name": "@x-squad/react-native-biometrics",
   "version": "2.1.4",
   "summary": "A React Native library for biometrics",
   "description": "React Native biometric functionality for signing and encryption",
@@ -24,25 +24,25 @@
     "touch-id",
     "face-id"
   ],
-  "homepage": "https://github.com/SelfLender/react-native-biometrics",
+  "homepage": "https://github.com/x-squadron/react-native-biometrics",
   "contributors": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SelfLender/react-native-biometrics.git"
+    "url": "git+https://github.com/x-squadron/react-native-biometrics.git"
   },
   "private": false,
   "author": {
-    "name": "Brandon Hines",
-    "url": "https://github.com/NappyPirate"
+    "name": "Amine Bezzarga",
+    "url": "https://github.com/x-squadron"
   },
   "license": "MIT",
   "peerDependencies": {
-    "react-native": ">=0.60.0"
+    "react-native": "^0.65.1"
   },
   "bugs": {
-    "url": "https://github.com/SelfLender/react-native-biometrics/issues"
+    "url": "https://github.com/x-squadron/react-native-biometrics/issues"
   },
   "devDependencies": {
-    "typescript": "^3.7.2"
+    "typescript": "^4.9"
   }
 }
